@@ -1,0 +1,4 @@
+<h2>Forecast:</h2>
+<div *ngFor="let forecast of weatherData">
+    <p>{{ forecast.date }} - {{ forecast.summary }} ({{ forecast.temperatureC }}°C / {{ forecast.temperatureF }}°F)</p>
+</div>
