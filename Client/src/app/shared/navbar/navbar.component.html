@@ -1,0 +1,9 @@
+<nav class="navbar">
+    <div class="logo">
+        <img src="../../../assets/images/Logo.png" alt="Logo" />
+    </div>
+
+    <div *ngIf="showProfileImage" class="profile-image">
+        <img [src]="profileImageSrc" alt="Profile" />
+    </div>
+</nav>

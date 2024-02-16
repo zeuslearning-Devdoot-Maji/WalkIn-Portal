@@ -18,7 +18,6 @@ export class MainPageComponent {
     getWeatherData() {
         this.service.getWeatherForecast().subscribe(data => {
             this.weatherData = data;
-            console.log(this.weatherData)
         });
     }
 }

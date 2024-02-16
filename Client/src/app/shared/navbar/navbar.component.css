@@ -1,0 +1,18 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1F2834;
+    height: 57px;
+}
+
+.logo img {
+    padding-left: 15px;
+}
+
+.profile-image img {
+    height: 40px;
+    width: 40px;
+    border: 2px solid #3FD28B;
+    border-radius: 50%;
+}
