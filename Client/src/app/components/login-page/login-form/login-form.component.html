@@ -3,29 +3,32 @@
         <div class="title">
             <p class="header">Log in</p>
         </div>
-    
-        <form method="POST" action="#">
-    
+
+        <form (ngSubmit)="login()" #loginForm="ngForm">
+
             <div class="form-group">
-                <input type="text" name="name" id="name" class="form-control" placeholder="Email ID*" pattern="^([a-z\d\._-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$|^(?=[a-zA-Z\d\._]{4,}$)(?!.*[\._]{2})[^\._].*[^\._]$" required/>
+                <input type="text" name="email" id="email" class="form-control" placeholder="Email ID*"
+                    pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" [(ngModel)]="credentials.email" required />
             </div>
 
             <div class="form-group">
-                <input type="password" name="password" id="password" class="form-control" placeholder="Password*" [type]="showPassword ? 'text' : 'password'" required/>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password*"
+                    [type]="showPassword ? 'text' : 'password'" [(ngModel)]="credentials.password" required />
                 <span class="eye-icon" (click)="togglePasswordVisibility()">
                     <img *ngIf="showPassword" src="../../assets/icons/hide.svg" alt="Hide Password">
                     <img *ngIf="!showPassword" src="../../assets/icons/show.svg" alt="Show Password">
                 </span>
             </div>
-    
+
             <div class="remember-me">
-                <input type="checkbox" name="remember" id="remember" class="remember" />
+                <input type="checkbox" name="remember" id="remember" class="remember"
+                    [(ngModel)]="credentials.remember" />
                 <label class="checkbox" for="remember"></label>
                 <p>Remember Me</p>
             </div>
-    
-            <button routerLink="/dashboard" type="submit">LOG IN</button>
-    
+
+            <button type="submit">LOG IN</button>
+
         </form>
     </div>
 </div>

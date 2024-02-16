@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-    { path: '', component: MainPageComponent },
+    { path: '', component: MainPageComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginPageComponent }
 ];
 
