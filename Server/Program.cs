@@ -1,3 +1,6 @@
+using MySqlConnector;
+using Server.Controllers;
+
 var policyName = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,11 @@ builder.Services.AddCors(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddMySqlDataSource(builder.Configuration.GetConnectionString("DefaultConnection")!);
+
+// Register your controllers
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -49,6 +57,39 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
+
+// app.MapGet("/locations", async() =>
+// {
+//     using var connection = new MySqlConnection("Server=127.0.0.1;User=root;Password=admin;Port=3306;Database=walkin");
+//     await connection.OpenAsync();
+
+//     using var command = new MySqlCommand("SELECT * FROM Location;", connection);
+//     using var reader = await command.ExecuteReaderAsync();
+
+//     // Create a list to store objects representing each row
+//     List<Location> locations = new List<Location>();
+
+//     while (await reader.ReadAsync())
+//     {
+//         // Create an instance of the Location class
+//         var location = new Location
+//         {
+//             LocationId = reader.GetInt32(reader.GetOrdinal("Id")),
+//             LocationName = reader.GetString(reader.GetOrdinal("Location")),
+//             // Add other property assignments for each column in your 'Location' table
+//         };
+
+//         // Add the object to the list of locations
+//         locations.Add(location);
+//     }
+
+//     return locations;
+// })
+// .WithName("GetLocations")
+// .WithOpenApi();
+
+// Map the controller routes
+app.MapControllers();
 
 app.Run();
 
