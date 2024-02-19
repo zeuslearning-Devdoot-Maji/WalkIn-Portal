@@ -1,0 +1,30 @@
+<app-navbar [showProfileImage]="true" [profileImageSrc]="displayPicture.displayPicture"></app-navbar>
+
+<div class="job-list-container">
+    <div class="job-card" *ngFor="let job of jobs">
+        <div class="job-card-header">
+            {{ job.jobTitle }}
+            <span class="expiration-text" *ngIf="calculateDaysRemaining(job.endDate) <= 5">
+                Expires in {{ calculateDaysRemaining(job.endDate) }} days
+            </span>
+        </div>
+        <div class="job-card-body">
+            <p class="job-info">Date & Time</p>
+            <p class="job-date">{{ job.startDate }} to {{ job.endDate }}
+                <span class="job-location">
+                     | 
+                    <img src="../../assets/icons/location.svg" alt="Location">
+                    {{ job.locationName }}
+                </span>
+            </p>
+
+            <hr class="divider">
+
+            <p class="job-info">Job Roles:</p>
+            <p *ngFor="let role of job.roleNames" class="role-name">{{ role }}</p>
+            <p *ngIf="job.specialOpportunity" class="special-opportunity">{{ job.specialOpportunity }}</p>
+
+            <button class="view-details-btn">View More Details</button>
+        </div>
+    </div>
+</div>

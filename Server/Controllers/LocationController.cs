@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MySqlConnector;
 
@@ -5,6 +6,7 @@ namespace Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class LocationController : ControllerBase
     {
         private readonly MySqlConnection _connection;

@@ -19,19 +19,15 @@ export class LoginFormComponent {
     constructor(private authService: AuthService, private router: Router) { }
 
     login() {
-        console.log(this.credentials)
-        // Call the login service
         this.authService.login(this.credentials).subscribe(
             (response) => {
                 /* 
                  * Successful login
                  * Store the token in local storage or a secure storage method
                  */
-                console.log(response)
                 localStorage.setItem('token', response.token);
 
-                // TODO: Redirect to the Job listing page
-                this.router.navigate(['']);
+                this.router.navigate(['/jobs']);
             },
             (error) => {
                 console.error('Login failed', error);

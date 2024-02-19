@@ -13,7 +13,7 @@ namespace Server.Controllers
             _connection = connection;
         }
 
-        [HttpPost]
+        [HttpPost("Login")]
         // [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] Models.AccountViewModel model)
         {
@@ -22,7 +22,6 @@ namespace Server.Controllers
                 {
                     await _connection.OpenAsync();
 
-                    // Use parameters to avoid SQL injection
                     var command = new MySqlCommand("SELECT * FROM User WHERE Email = @Email AND Password = @Password;", _connection);
                     command.Parameters.AddWithValue("@Email", model.Email);
                     command.Parameters.AddWithValue("@Password", model.Password);

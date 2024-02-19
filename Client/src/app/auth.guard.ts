@@ -14,7 +14,12 @@ export class AuthGuard {
         if (!isAuthenticated) {
             // Redirect to the login page if not authenticated
             this.router.navigate(['/login']);
+            // return true
         }
+
+        // If the user is already authenticated, redirect to the jobs page
+        // this.router.navigate(['/jobs']);
+        // return false
 
         return isAuthenticated;
     }

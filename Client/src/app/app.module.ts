@@ -9,6 +9,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { JobsPageComponent } from './components/jobs-page/jobs-page.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
         MainPageComponent,
         LoginPageComponent,
         LoginFormComponent,
-        NavbarComponent
+        NavbarComponent,
+        JobsPageComponent
     ],
     imports: [
         AppRoutingModule,
