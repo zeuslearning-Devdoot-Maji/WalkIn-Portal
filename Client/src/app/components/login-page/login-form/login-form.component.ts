@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth-service/auth.service';
 })
 export class LoginFormComponent {
     showPassword: boolean = false;
+    errorMessage: string = '';
 
     credentials = {
         email: '',
@@ -19,8 +20,8 @@ export class LoginFormComponent {
     constructor(private authService: AuthService, private router: Router) { }
 
     login() {
-        this.authService.login(this.credentials).subscribe(
-            (response) => {
+        this.authService.login(this.credentials).subscribe({
+            next: (response) => {
                 /* 
                  * Successful login
                  * Store the token in local storage or a secure storage method
@@ -29,10 +30,11 @@ export class LoginFormComponent {
 
                 this.router.navigate(['/jobs']);
             },
-            (error) => {
+            error: (error) => {
                 console.error('Login failed', error);
+                this.errorMessage = 'Invalid Email ID or Password. Please try again.';
             }
-        );
+        });       
     }
 
     togglePasswordVisibility() {

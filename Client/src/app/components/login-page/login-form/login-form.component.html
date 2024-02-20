@@ -20,6 +20,11 @@
                 </span>
             </div>
 
+            <!-- Error message display -->
+            <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+            </div>
+
             <div class="remember-me">
                 <input type="checkbox" name="remember" id="remember" class="remember"
                     [(ngModel)]="credentials.remember" />
