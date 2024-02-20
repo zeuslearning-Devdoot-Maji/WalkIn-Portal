@@ -90,5 +90,86 @@ namespace Server.Controllers
                 return StatusCode(500, $"Internal server error: {error.Message}");
             }
         }
+
+        [HttpPost("Apply")]
+        [Authorize]
+        public async Task<IActionResult> ApplyForJob([FromBody] JobApplicationModel model)
+        {
+            try
+            {
+                // Get userId from the JWT token claim
+                var userIdClaim = User.FindFirst("userId");
+                if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int userId))
+                {
+                    return BadRequest("Invalid or missing userId in the JWT token.");
+                }
+
+                await _connection.OpenAsync();
+
+                using (var transaction = await _connection.BeginTransactionAsync())
+                {
+                    try
+                    {
+                        // Check if the user has already applied for the job
+                        var checkExistingApplicationQuery = @"
+                            SELECT COUNT(*)
+                            FROM UserJobApplication
+                            WHERE UserId = @UserId AND JobId = @JobId
+                        ";
+
+                        using (var checkExistingApplicationCommand = new MySqlCommand(checkExistingApplicationQuery, _connection))
+                        {
+                            checkExistingApplicationCommand.Transaction = transaction; // Set the transaction for the command (https://fl.vu/mysql-trans)
+
+                            checkExistingApplicationCommand.Parameters.AddWithValue("@UserId", userId);
+                            checkExistingApplicationCommand.Parameters.AddWithValue("@JobId", model.JobId);
+
+                            var existingApplicationCount = Convert.ToInt32(await checkExistingApplicationCommand.ExecuteScalarAsync());
+
+                            if (existingApplicationCount > 0)
+                            {
+                                return BadRequest("You have already applied for the selected job.");
+                            }
+                        }
+
+                        // Insert the new application
+                        var insertApplicationQuery = @"
+                            INSERT INTO UserJobApplication (UserId, JobId, JobRoleId, TimeSlotId, DateCreated, DateModified)
+                            VALUES (@UserId, @JobId, @JobRoleId, @TimeSlotId, NOW(), NOW())
+                        ";
+
+                        foreach (var roleId in model.RoleIds)
+                        {
+                            using (var insertApplicationCommand = new MySqlCommand(insertApplicationQuery, _connection))
+                            {
+                                insertApplicationCommand.Transaction = transaction; // Set the transaction for the command (https://fl.vu/mysql-trans)
+
+                                insertApplicationCommand.Parameters.AddWithValue("@UserId", userId);
+                                insertApplicationCommand.Parameters.AddWithValue("@JobId", model.JobId);
+                                insertApplicationCommand.Parameters.AddWithValue("@JobRoleId", roleId);
+                                insertApplicationCommand.Parameters.AddWithValue("@TimeSlotId", model.TimeSlotId);
+
+                                await insertApplicationCommand.ExecuteNonQueryAsync();
+                            }
+                        }
+
+                        // Commit the transaction
+                        await transaction.CommitAsync();
+
+                        return Ok(new { Message = "Application submitted successfully." });
+                    }
+                    catch (Exception)
+                    {
+                        // Rollback the transaction in case of an exception
+                        await transaction.RollbackAsync();
+                        throw;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                return StatusCode(500, $"Internal server error: {error.Message}");
+            }
+        }
     }
 }
