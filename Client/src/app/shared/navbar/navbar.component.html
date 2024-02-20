@@ -3,7 +3,12 @@
         <img src="../../../assets/images/Logo.png" alt="Logo" />
     </div>
 
-    <div *ngIf="showProfileImage" class="profile-image">
+    <div *ngIf="showProfileImage" class="profile-image" (click)="toggleDropdown()">
         <img [src]="profileImageSrc" alt="Profile" />
+        <div class="dropdown" *ngIf="isDropdownVisible">
+            <ul>
+                <li><a href="#" (click)="logout()">Log Out</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
