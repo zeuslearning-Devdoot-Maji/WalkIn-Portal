@@ -14,7 +14,6 @@ namespace Server.Controllers
         }
 
         [HttpPost("Login")]
-        // [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] Models.AccountViewModel model)
         {
             try
