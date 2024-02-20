@@ -9,15 +9,9 @@ namespace Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class JobController : ControllerBase
+    public class JobsController(MySqlConnection connection) : ControllerBase
     {
-        private readonly MySqlConnection _connection;
-
-        // Inject MySqlConnection into the constructor
-        public JobController(MySqlConnection connection)
-        {
-            _connection = connection;
-        }
+        private readonly MySqlConnection _connection = connection;
 
         [HttpGet]
         [Authorize]
@@ -122,9 +116,9 @@ namespace Server.Controllers
             }
         }
 
-        [HttpPost("Apply")]
+        [HttpPost("{jobId}/Apply")]
         [Authorize]
-        public async Task<IActionResult> ApplyForJob([FromBody] JobApplicationModel model)
+        public async Task<IActionResult> ApplyForJob(string jobId, [FromBody] JobApplicationModel model)
         {
             try
             {
@@ -153,7 +147,7 @@ namespace Server.Controllers
                             checkExistingApplicationCommand.Transaction = transaction; // Set the transaction for the command (https://fl.vu/mysql-trans)
 
                             checkExistingApplicationCommand.Parameters.AddWithValue("@UserId", userId);
-                            checkExistingApplicationCommand.Parameters.AddWithValue("@JobId", model.JobId);
+                            checkExistingApplicationCommand.Parameters.AddWithValue("@JobId", jobId);
 
                             var existingApplicationCount = Convert.ToInt32(await checkExistingApplicationCommand.ExecuteScalarAsync());
 
@@ -176,7 +170,7 @@ namespace Server.Controllers
                                 insertApplicationCommand.Transaction = transaction; // Set the transaction for the command (https://fl.vu/mysql-trans)
 
                                 insertApplicationCommand.Parameters.AddWithValue("@UserId", userId);
-                                insertApplicationCommand.Parameters.AddWithValue("@JobId", model.JobId);
+                                insertApplicationCommand.Parameters.AddWithValue("@JobId", jobId);
                                 insertApplicationCommand.Parameters.AddWithValue("@JobRoleId", roleId);
                                 insertApplicationCommand.Parameters.AddWithValue("@TimeSlotId", model.TimeSlotId);
 
