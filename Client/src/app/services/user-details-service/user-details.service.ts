@@ -6,11 +6,14 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class UserDetailsService {
-    private apiUrl = 'http://localhost:5193';
+
+    private apiBaseUrl = 'http://localhost:5193';
 
     constructor(private http: HttpClient) { }
 
     getUserDisplayPicture(): Observable<any> {
+        const endpoint = `${this.apiBaseUrl}/api/User/DisplayPicture`
+
         // Retrieve the token from local storage
         const token = localStorage.getItem('token');
 
@@ -18,6 +21,6 @@ export class UserDetailsService {
             'Authorization': `Bearer ${token}`
         });
 
-        return this.http.get<any>(`${this.apiUrl}/api/User/DisplayPicture`, { headers });
+        return this.http.get<any>(endpoint, { headers });
     }
 }

@@ -6,11 +6,14 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class JobsListingService {
-    private apiUrl = 'http://localhost:5193/api/Jobs';
+
+    private apiBaseUrl = 'http://localhost:5193';
 
     constructor(private http: HttpClient) { }
 
     getJobsAvailableForUser(): Observable<any> {
+        const endpoint = `${this.apiBaseUrl}/api/Jobs`
+
         // Retrieve the token from local storage
         const token = localStorage.getItem('token');
 
@@ -18,7 +21,7 @@ export class JobsListingService {
             'Authorization': `Bearer ${token}`
         });
 
-        return this.http.get<any>(this.apiUrl, { headers });
+        return this.http.get<any>(endpoint, { headers });
     }
 
 }
