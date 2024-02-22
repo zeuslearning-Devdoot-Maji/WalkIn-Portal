@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainPageComponent } from './main-page/main-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -16,7 +15,6 @@ import { JobApplicationConfirmationPageComponent } from './components/job-applic
 @NgModule({
     declarations: [
         AppComponent,
-        MainPageComponent,
         LoginPageComponent,
         LoginFormComponent,
         NavbarComponent,
