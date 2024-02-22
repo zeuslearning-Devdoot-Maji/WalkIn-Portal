@@ -1,0 +1,16 @@
+<!-- Navbar -->
+<app-navbar [showProfileImage]="true" [profileImageSrc]="displayPicture.displayPicture"></app-navbar>
+
+<!-- Confirmation Section -->
+<div class="application-confirmation-container">
+    <div class="application-image-container">
+        <svg class="confirmation-image" viewBox="0 0 100 100">
+            <image xlink:href="../../../assets/icons/confirmation.svg" width="100" height="100" />
+        </svg>
+    </div>
+    <div class="application-text-container">
+        <h1 class="confirmation-message">Congratulations! You have successfully applied for the walk-in opportunity</h1>
+        <hr class="divider">
+        <button class="application-button" (click)="navigateToJobsPage()">Continue</button>
+    </div>
+</div>

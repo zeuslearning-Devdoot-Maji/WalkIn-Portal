@@ -1,0 +1,45 @@
+.application-confirmation-container {
+    width: 90%;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 4px 6px #0000003D;
+    margin: 76px auto;
+    padding: 16px;
+    text-align: center;
+}
+
+.confirmation-image {
+    margin-top: -66px; /* Half the image's height i.e.50px + padding of the parent container i.e. 16px */
+    height: 100px;
+    width: 100px;
+}
+
+.application-text-container {
+    margin-top: 8px;
+    text-align: center;
+}
+
+.confirmation-message {
+    font-size: 22px;
+    line-height: 24px;
+    margin-bottom: 16px;
+    color: #222222;
+}
+
+.application-button {
+    margin: 24px;
+    padding: 5px 16px;
+    cursor: pointer;
+    background-color: #3FD28B;
+    box-shadow: 0px 3px 5px #0000003D;
+    border-radius: 5px;
+    color: #1F2834;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 480px) {
+    .application-confirmation-container {
+        width: 80%;
+    }
+}

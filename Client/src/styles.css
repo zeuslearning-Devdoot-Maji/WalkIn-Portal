@@ -18,3 +18,9 @@
 body {
     background-color: #EEEEEE;
 }
+
+.divider {
+    margin: 16px 0;
+    border-top: 1px solid #000000;
+    opacity: 0.12;
+}

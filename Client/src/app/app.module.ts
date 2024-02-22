@@ -11,6 +11,7 @@ import { LoginFormComponent } from './components/login-page/login-form/login-for
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { JobsPageComponent } from './components/jobs-page/jobs-page.component';
 import { JobDetailsPageComponent } from './components/job-details-page/job-details-page.component';
+import { JobApplicationConfirmationPageComponent } from './components/job-application-confirmation-page/job-application-confirmation-page.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { JobDetailsPageComponent } from './components/job-details-page/job-detai
         LoginFormComponent,
         NavbarComponent,
         JobsPageComponent,
-        JobDetailsPageComponent
+        JobDetailsPageComponent,
+        JobApplicationConfirmationPageComponent
     ],
     imports: [
         AppRoutingModule,

@@ -74,7 +74,7 @@ export class JobDetailsPageComponent {
             this.jobApplicationService.applyForJob(this.jobId, this.selectedRoleIds, this.selectedTimeSlot)
                 .subscribe(
                     () => {
-                        this.router.navigate(['/jobs']);
+                        this.router.navigate(['/jobs/:jobId/confirmation']);
                     },
                     error => {
                         alert('Failed to apply for the job. Please try again.');
