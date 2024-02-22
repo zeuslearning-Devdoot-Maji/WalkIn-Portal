@@ -1,6 +1,7 @@
 .login-page-wrapper {
     display: flex;
-    height: calc(100vh - 57px); /* Subtract the height of the navbar */
+    height: calc(100vh - 57px);
+    /* Subtract the height of the navbar */
     align-items: center;
     justify-content: center;
 }
@@ -31,8 +32,8 @@
     width: 100%;
     color: #666666;
     font-size: 16px;
-    font-weight: bold;    
-    border-bottom: 2px solid rgba(0,0,0,0.12);
+    font-weight: bold;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.12);
 }
 
 .eye-icon {
@@ -49,53 +50,48 @@
     font-weight: bold;
 }
 
-input[type='checkbox'] {
-    display: none;
-}
-
-.checkbox {
-    width: 15px;
-    height: 15px;
-    border-radius: 2px;
-    border: 2px solid #1F7A54;
-}
-
-input[type='checkbox']:checked+label{
-    background-color: #1F7A54;
-    position: relative;
-}
-
-input[type='checkbox']:checked+label:before{
-    content: '';
-    border-left: 2.5px solid #FFFFFF;
-    border-bottom: 2.5px solid #FFFFFF;
-    display: inline-block;
-    position: absolute;
-    width: 10px;
-    height: 5px;
-    z-index: 1;
-    top: 50%;
-    left: 50%;
-    transform: rotate(-45deg) translate(-2%, -113%);
-    color: #FFFFFF;
-}
-
 .remember-me {
     display: flex;
     padding: 25px;
 }
 
-.remember-me p {
-    padding-left: 5px;
-    font-weight: bold;
+input[type='checkbox']:after {
+    width: 12px;
+    height: 12px;
+    background-color: #FFFFFF;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid #1F7A54;
+    border-radius: 2px;
+    vertical-align: middle;
+}
+
+input[type='checkbox']:checked:after {
+    width: 12px;
+    height: 12px;
+    background-color: #1F7A54;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid #1F7A54;
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 2px #FFFFFF;
+    vertical-align: middle;
+}
+
+.checkbox-label {
+    margin-left: 8px;
+    cursor: pointer;
+    vertical-align: middle;
 }
 
 button {
     background-color: #3FD28B;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    display:block;
-    color:#1F2834;
+    display: block;
+    color: #1F2834;
     font-weight: bold;
     height: 40px;
     width: 216px;
