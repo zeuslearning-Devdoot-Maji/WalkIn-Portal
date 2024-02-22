@@ -1,0 +1,122 @@
+<!-- Navbar -->
+<app-navbar [showProfileImage]="true" [profileImageSrc]="displayPicture.displayPicture"></app-navbar>
+
+<!-- Job Detail -->
+<div class="job-list-container">
+    <div class="job-card">
+        <div class="job-card-header">
+            <span>{{ job.jobTitle }}</span>
+            <button class="apply-btn" (click)="applyForJob()">Apply</button>
+        </div>
+        <div class="job-card-body">
+            <p class="job-info">Date & Time</p>
+            <p class="job-date">{{ job.startDate }} to {{ job.endDate }}
+                <span class="job-location">
+                    |
+                    <img src="../../assets/icons/location.svg" alt="Location">
+                    {{ job.locationName }}
+                </span>
+            </p>
+
+            <hr class="divider">
+
+            <p class="job-info">Job Roles:</p>
+            <p *ngFor="let role of job.roles" class="role-name">{{ role.roleName }}</p>
+            <p *ngIf="job.specialOpportunity" class="special-opportunity">{{ job.specialOpportunity }}</p>
+
+        </div>
+
+        <!-- PreRequisite Section -->
+        <div class="prerequisite-section" *ngIf="job.preRequisiteApplicationProcess">
+            <div class="prerequisite-header" (click)="togglePrerequisiteSection()">
+                Pre-requisites & Application Process
+                <button class="arrow-btn">
+                    <span class="arrow-down" *ngIf="!showPrerequisiteSection">&#9660;</span>
+                    <span class="arrow-up" *ngIf="showPrerequisiteSection">&#9650;</span>
+                </button>
+            </div>
+            <div class="prerequisite-content" *ngIf="showPrerequisiteSection">
+                <div *ngIf="job.preRequisiteApplicationProcess.generalInstructions">
+                    <p class="prerequisite-subheading">General Instructions:</p>
+                    <p class="prerequisite-info">{{ job.preRequisiteApplicationProcess.generalInstructions }}</p>
+                    <hr class="divider">
+                </div>
+
+                <div *ngIf="job.preRequisiteApplicationProcess.examInstructions">
+                    <p class="prerequisite-subheading">Instructions for the Exam:</p>
+                    <p class="prerequisite-info">{{ job.preRequisiteApplicationProcess.examInstructions }}</p>
+                    <hr class="divider">
+                </div>
+
+                <div *ngIf="job.preRequisiteApplicationProcess.systemRequirements">
+                    <p class="prerequisite-subheading">Minimum System Requirements:</p>
+                    <p class="prerequisite-info">{{ job.preRequisiteApplicationProcess.systemRequirements }}</p>
+                    <hr class="divider">
+                </div>
+
+                <div *ngIf="job.preRequisiteApplicationProcess.process">
+                    <p class="prerequisite-subheading">Process:</p>
+                    <p class="prerequisite-info">{{ job.preRequisiteApplicationProcess.process }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Time and Role Selection Form -->
+<div class="time-slots-roles-container">
+    <form class="time-slots-roles-card">
+        <p class="time-slots-roles-heading">Time Slots & Preferences</p>
+        <div class="time-slots">
+            <p class="time-slots-roles-subheading">Select a Time Slot:</p>
+            <div class="time-slot" *ngFor="let slot of job.timeSlots; let i = index">
+                <input type="radio" id="{{slot.id}}" name="timeSlot" [(ngModel)]="selectedTimeSlot" [value]="slot.id">
+                <label class="radio-label" for="{{slot.id}}">{{slot.slotStartTime}} to {{slot.slotEndTime}}</label>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="roles">
+            <p class="time-slots-roles-subheading">Select Your Preference:</p>
+            <div class="role" *ngFor="let role of job.roles; let i = index">
+                <input type="checkbox" id="{{role.jobRoleId}}" name="role"
+                    (change)="onCheckboxChange($event, role.jobRoleId)" [value]="role.jobRoleId">
+                <label class="checkbox-label" for="{{role.jobRoleId}}">{{role.roleName}}</label>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Role Details -->
+<div class="job-roles-container">
+    <div class="job-role-card" *ngFor="let role of job.roles; let i = index">
+        <div class="job-role-header" (click)="toggleRoleDetailsSection(i)">
+            <span class="job-role-name">{{ role.roleName }}</span>
+            <button class="arrow-btn">
+                <span class="arrow-down" *ngIf="!showRoleDetails[i]">▼</span>
+                <span class="arrow-up" *ngIf="showRoleDetails[i]">▲</span>
+            </button>
+        </div>
+        <div class="job-role-details" *ngIf="showRoleDetails[i]">
+            <div class="job-role-package">
+                <p class="job-role-info-subheading">Gross Compensation Package:</p>
+                <p class="job-role-text">{{ role.jobPackage }}</p>
+            </div>
+
+            <hr class="divider">
+
+            <div class="job-role-description">
+                <p class="job-role-info-subheading">Role Description:</p>
+                <p class="job-role-text">{{ role.roleDescription }}</p>
+            </div>
+
+            <hr class="divider">
+
+            <div class="job-role-requirements">
+                <p class="job-role-info-subheading">Requirements:</p>
+                <p class="job-role-text">{{ role.requirements }}</p>
+            </div>
+        </div>
+    </div>
+</div>

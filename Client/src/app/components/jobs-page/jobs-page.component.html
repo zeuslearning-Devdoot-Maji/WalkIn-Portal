@@ -24,7 +24,7 @@
             <p *ngFor="let role of job.roleNames" class="role-name">{{ role }}</p>
             <p *ngIf="job.specialOpportunity" class="special-opportunity">{{ job.specialOpportunity }}</p>
 
-            <button class="view-details-btn">View More Details</button>
+            <button class="view-details-btn" (click)="navigateToJobDetails(job.jobId)">View More Details</button>
         </div>
     </div>
 </div>

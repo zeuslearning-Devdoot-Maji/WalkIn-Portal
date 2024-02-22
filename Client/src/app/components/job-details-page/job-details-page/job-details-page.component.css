@@ -1,0 +1,308 @@
+/* Job Details Section */
+.job-list-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.job-card {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 4px 6px #0000003D;
+    margin: 24px 24px 0px;
+    width: 100%;
+}
+
+.job-card-header {
+    padding: 16px 16px 8px;
+    color: #1F7A54;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.apply-btn {
+    background: #3FD28B 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 5px #0000003D;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 5px 16px;
+    text-transform: uppercase;
+    color: #25313F;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: bold;
+}
+
+.apply-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.job-card-body {
+    padding: 8px 16px;
+}
+
+.job-info {
+    color: #666666;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: left;
+}
+
+.job-date {
+    color: #222222;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: bold;
+}
+
+.job-location {
+    color: #666666;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: bold;
+}
+
+.job-location img {
+    height: 11px;
+}
+
+.divider {
+    margin: 16px 0;
+    border-top: 1px solid #000000;
+    opacity: 0.12;
+}
+
+.role-name {
+    color: #222222;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: bold;
+}
+
+.special-opportunity {
+    display: inline-block;
+    background: #EEDD6B 0% 0% no-repeat padding-box;
+    border-radius: 9px;
+    margin: 16px auto 0px;
+    color: #222222;
+    padding: 2px 8px;
+    letter-spacing: 0.25px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+/* Pre-requisite Section */
+.prerequisite-section {
+    margin-top: 16px;
+    background: #DBEFFF 0% 0% no-repeat padding-box;
+    width: 100%;
+}
+
+.prerequisite-header {
+    margin-left: 16px;
+    color: #222222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.prerequisite-subheading {
+    color: #666666;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: left;
+}
+
+.arrow-btn {
+    background: none;
+    border-left: 1px solid #1F7A54;
+    color: #1F7A54;
+    cursor: pointer;
+    margin: 16px;
+}
+
+.arrow-down,
+.arrow-up {
+    font-size: 12px;
+    margin-left: 8px;
+}
+
+.prerequisite-info {
+    color: #222222;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: bold;
+    padding: 8px 0px;
+    white-space: pre-line;
+}
+
+.prerequisite-content {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    padding: 16px;
+}
+
+/* Time and Role Selection Form Section */
+.time-slots-roles-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.time-slots-roles-card {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DDDDDD;
+    box-shadow: 0px 4px 6px #0000003D;
+    margin: 24px 24px 0px;
+    padding: 16px;
+    width: 100%;
+}
+
+.time-slots-roles-heading {
+    padding-bottom: 16px;
+    color: #222222;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.time-slots-roles-subheading {
+    color: #666666;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: left;
+    padding: 8px 0px;
+}
+
+.time-slot,
+.role {
+    color: #222222;
+    padding: 8px 0px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #FFFFFF;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid #1F7A54;
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #1F7A54;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid #1F7A54;
+    box-shadow: inset 0 0 0 3px #FFFFFF;
+}
+
+input[type='checkbox']:after {
+    width: 12px;
+    height: 12px;
+    background-color: #FFFFFF;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid #1F7A54;
+    border-radius: 2px;
+}
+
+input[type='checkbox']:checked:after {
+    width: 12px;
+    height: 12px;
+    background-color: #1F7A54;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid #1F7A54;
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 2px #FFFFFF;
+}
+
+.radio-label,
+.checkbox-label {
+    margin-left: 8px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+/* Role Details Section */
+.job-roles-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.job-role-card {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DDDDDD;
+    box-shadow: 0px 4px 6px #0000003D;
+    margin: 24px;
+    width: 100%;
+}
+
+.job-role-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #DBEFFF 0% 0% no-repeat padding-box;
+    width: 100%;
+}
+
+.job-role-info-subheading {
+    color: #666666;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: left;
+    padding: 8px 0px;
+}
+
+.job-role-details {
+    padding: 16px;
+}
+
+.job-role-description,
+.job-role-requirements {
+    margin-bottom: 16px;
+}
+
+.job-role-name {
+    margin: 16px;
+    color: #222222;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.job-role-text {
+    color: #222222;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: bold;
+    padding: 8px 0px;
+    white-space: pre-line;
+}

@@ -246,7 +246,7 @@ namespace Server.Controllers
                 LocationName = jobReader.GetString("Location"),
                 SpecialOpportunity = jobReader.IsDBNull(jobReader.GetOrdinal("SpecialOpportunity")) ? null : jobReader.GetString("SpecialOpportunity"),
                 Roles = new List<RoleViewModel>(),
-                TimeSlot = new List<TimeSlotViewModel>(),
+                TimeSlots = new List<TimeSlotViewModel>(),
                 PreRequisiteApplicationProcess = jobReader != null
                     ? JsonSerializer.Deserialize<PreRequisiteApplicationProcessViewModel>(jobReader.GetString("PreRequisiteApplicationProcess")) ?? new PreRequisiteApplicationProcessViewModel()
                     : new PreRequisiteApplicationProcessViewModel()
@@ -316,14 +316,14 @@ namespace Server.Controllers
 
             while (await timeSlotsReader.ReadAsync())
             {
-                var timeSlot = new TimeSlotViewModel
+                var timeSlots = new TimeSlotViewModel
                 {
                     Id = timeSlotsReader.GetInt32("Id"),
                     SlotStartTime = timeSlotsReader.GetTimeSpan("SlotStartTime"),
                     SlotEndTime = timeSlotsReader.GetTimeSpan("SlotEndTime")
                 };
 
-                jobDetail.TimeSlot.Add(timeSlot);
+                jobDetail.TimeSlots.Add(timeSlots);
             }
         }
 

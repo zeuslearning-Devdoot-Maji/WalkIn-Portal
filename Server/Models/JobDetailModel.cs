@@ -9,7 +9,7 @@ namespace Server.Models
         public DateOnly EndDate { get; set; }
         public required string LocationName { get; set; }
         public required List<RoleViewModel> Roles { get; set; }
-        public required List<TimeSlotViewModel> TimeSlot { get; set; }
+        public required List<TimeSlotViewModel> TimeSlots { get; set; }
         public required PreRequisiteApplicationProcessViewModel PreRequisiteApplicationProcess { get; set; }
     }
 
