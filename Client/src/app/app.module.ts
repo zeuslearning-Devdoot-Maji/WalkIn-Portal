@@ -10,7 +10,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { JobsPageComponent } from './components/jobs-page/jobs-page.component';
-import { JobDetailsPageComponent } from './components/job-details-page/job-details-page/job-details-page.component';
+import { JobDetailsPageComponent } from './components/job-details-page/job-details-page.component';
 
 @NgModule({
     declarations: [
